@@ -1,0 +1,15 @@
+<div class="col-md-4 offset-md-4">
+  <div class="card">
+    <div class="card-body">
+      <form>
+        <div class="form-group">
+          <label for="name">NAME</label><input type="text" name="name" [(ngModel)]="pond.name"  placeholder="Name" class="form-control autofocus">
+          <label for="size">SIZE</label><input type="text" name="size" [(ngModel)]="pond.size"  placeholder="Size" class="form-control">
+        </div>
+        <button class="btn btn-success btn-block" (click)="editing ? updatePond() : saveNewPond()">
+          Save
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

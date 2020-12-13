@@ -1,0 +1,24 @@
+<div class="col-md-4" *ngFor="let farm of farms">
+  <div class="card">
+    <div class="card-header bg-dark text-white">
+      <p>FARM NAME: {{farm.name}}
+         <a [routerLink]="['/farms/edit', farm._id]" class="text-white">   .   <i class="far fa-edit"></i></a>
+
+         <a (click)="deleteFarm(farm._id)">  .  <i class="far fa-trash-alt"></i></a>
+      </p>
+
+
+    </div>
+    <div class="card-body">
+      <p>{{farm.town}}, {{farm.province}}</p>
+      <p>MANAGER: {{farm.manager}}</p>
+        <app-ponds-list
+          [ponds] = farm.ponds
+          [farm] = farm
+        ></app-ponds-list>
+      </div>
+      <div class="container text-right">
+        <p>TOTAL AREA: {{ farm.totalSize | number:'1.0-0'}} ha(s)</p>
+    </div>
+  </div>
+</div>
