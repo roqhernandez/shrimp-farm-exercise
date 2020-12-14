@@ -30,7 +30,8 @@ const routes: Routes = [
     path: 'ponds/new/:farm_id',
     component: PondsFormComponent
   },
-  {
+  { // A params approach via url could have been used but for this simple example
+    //The ID data for both a farm and a pond is passed through the URL
     path: 'ponds/edit/:farm_id/:pond_id',
     component: PondsFormComponent
   }
