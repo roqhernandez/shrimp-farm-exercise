@@ -12,7 +12,7 @@ export class FarmsService {
   constructor(private http: HttpClient) {
 
   }
-
+  //Each of this methods simply takes the call and touches the end-point necessary in the API
   getFarms(){
      return this.http.get(`${this.API_URI}/farms`);
   }
@@ -30,7 +30,6 @@ export class FarmsService {
   }
 
   deleteFarm(id: string){
-    console.log(`${this.API_URI}/farms/${id}`);
     return this.http.delete(`${this.API_URI}/farms/${id}`);
   }
 
