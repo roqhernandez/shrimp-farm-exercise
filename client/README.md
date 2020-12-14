@@ -1,6 +1,7 @@
 # Client
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.3 and Node.JS version v12.18.2
+The API server setting is locally in the farms.service.ts and ponds.service.ts file which by default is pointing to localhost.
 
 ## Development server
 
