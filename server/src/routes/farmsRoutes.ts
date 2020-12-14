@@ -10,6 +10,7 @@ class FarmsRoutes{
     }
 
     config(): void {
+        //Very straight forward of handling all meaningful requests
         this.router.get('/', farmsController.list);
         this.router.get('/:id', farmsController.getOne);
         this.router.get('/get-total-size/:id', farmsController.getTotalSize);
