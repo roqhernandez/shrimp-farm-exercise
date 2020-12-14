@@ -6,6 +6,7 @@ const mongojs = require('mongojs');
 class PondsController{
 
     public list(req: Request, res: Response, next: any){
+        //To list ponds we need to find the farm and get the ponds array of objects
         db.farms.findOne({_id:mongojs.ObjectId(req.params.farm_id)}, (err: any, farm: any) => {
             if (err) return next(err);
             if(farm.ponds)
@@ -15,6 +16,7 @@ class PondsController{
     }
 
     public getOne(req: Request, res: Response, next: any) {
+        //Similarly to get one pond, we need to get the farm and get the index to get the object at that position
         db.farms.findOne({_id:mongojs.ObjectId(req.params.farm_id)}, (err: any, farm: any) => {
             if (err) return next(err);
             if(farm.ponds)
@@ -29,6 +31,10 @@ class PondsController{
 
         var pond_id: number = +req.params.pond_id;
 
+        //To update a pond is a little tricky since there is no built-in way to update 
+        //an element using the index.
+        //One way to solve it is slicing the array to right before our desired element
+        //essentially removing the desired object.
         db.farms.update({_id: mongojs.ObjectId(farm_id)}, [
             {$set: {ponds: {
                   $concatArrays: [ 
@@ -38,6 +44,7 @@ class PondsController{
             }}}
        ]);
 
+        //Then inserting te new one at that position which is something that is suported by MongoDB and MongoJS
        db.farms.updateOne({_id: mongojs.ObjectId(farm_id)}, { $push: { 'ponds': {$each: [pond] , $position: pond_id} } }, {}, (err: any, farm: any) => {
             if (err) return next(err);
             res.json({_id: farm_id, 'pond_id': pond_id, 'pond': pond});
@@ -65,6 +72,7 @@ class PondsController{
         const farm_id = req.params.farm_id;
         var pond_id: number = +req.params.pond_id;
 
+        //Slicing the array essentially taking that desired object out
         db.farms.update({_id: mongojs.ObjectId(farm_id)}, [
             {$set: {ponds: {
                   $concatArrays: [ 
