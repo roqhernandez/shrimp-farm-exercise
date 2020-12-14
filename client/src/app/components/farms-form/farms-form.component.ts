@@ -26,6 +26,7 @@ export class FarmsFormComponent implements OnInit {
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;
 
+    //Do this to reuse the same component for adding and editing
     if (params.id){
       this.farmsService.getFarm(params.id).subscribe(
         res => {
