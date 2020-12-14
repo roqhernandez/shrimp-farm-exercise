@@ -8,6 +8,7 @@ import { FarmsService } from '../../services/farms.service';
   styleUrls: ['./farms-list.component.css']
 })
 
+/This class is where most of e funcionality resides
 export class FarmsListComponent implements OnInit {
 
   farms: any = [];
@@ -15,6 +16,7 @@ export class FarmsListComponent implements OnInit {
   constructor(private farmsService: FarmsService) { }
 
   ngOnInit(): void {
+    //Making sure that the main view is up to date
    this.getFarms();
   }
 
