@@ -9,6 +9,8 @@ class IndexRoutes{
     }
 
     config(): void {
+        //Default request handling
+        //TODO sned a more meaningfull message
         this.router.get('/', (req,res) => res.send('DEFAULT'));
     }
 }
