@@ -1,0 +1,7 @@
+#Server side API
+
+This projects has the code to execute de API.  It talks to a MongoDB via Mongojs and it has been tested with Mongo version 4.4 and Node.JS version v12.18.2
+
+The official website for MongoDb is https://www.mongodb.com/try/download/community
+
+The official website for Node.JS is https://nodejs.org/en/
