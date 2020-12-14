@@ -25,7 +25,8 @@ class FarmsController{
     public getTotalSize(req: Request, res: Response, next: any) {
 
         var totalSize: number = 0;
-
+        //This is a two step process where we get the document for the farm first
+        //Then we iterate through each pond object in the ponds array
         db.farms.findOne({_id:mongojs.ObjectId(req.params.id)}, (err: any, farm: any) => {
             if (err) return next(err);
             if (farm && farm.ponds){
@@ -62,6 +63,7 @@ class FarmsController{
             res.json({'error': 'bad request'});
         } else {            
             delete farm._id;
+            //We quite lietrally replace the farm document that matches the Object ID
             db.farms.updateOne({_id: mongojs.ObjectId(req.params.id)}, { $set: farm }, {}, (err: any, farm: any) => {
                 if (err) return next(err);
                 res.json(farm);
