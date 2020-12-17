@@ -6,7 +6,7 @@
   <div class="list-group" *ngFor="let pond of ponds;let indexOfelement=index;">
     <li class="list-group-item d-flex justify-content-between align-items-center">
       <a routerLink="/ponds/edit/{{farm._id}}/{{indexOfelement}}">{{pond.name}}</a>
-      <span class="badge badge-primary badge-pill">{{pond.size | number:'1.0-0'}} ha(s)</span>
+      <span class="badge badge-primary badge-pill">{{pond.size | number:'1.0-2'}} ha(s)</span>
       <a (click)="deletePond(farm, indexOfelement)"><i class="fas fa-trash-alt"> </i></a>
     </li>
   </div>

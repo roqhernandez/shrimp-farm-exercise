@@ -19,6 +19,8 @@ export class FarmsFormComponent implements OnInit {
     totalSize: 0
   };
 
+  errorMsg = '';
+
   editing: boolean = false;
 
   constructor(private farmsService: FarmsService, private router: Router, private activatedRoute: ActivatedRoute) { }
@@ -44,7 +46,10 @@ export class FarmsFormComponent implements OnInit {
         console.log(res);
         this.router.navigate(['/farms']);
       },
-      err => console.log(err)
+      err => {
+        this.errorMsg = err.error.errorMsg;
+        console.log(err.error.errorMsg);
+      }
     )
   }
 
@@ -54,7 +59,10 @@ export class FarmsFormComponent implements OnInit {
         console.log(res);
         this.router.navigate(['/farms']);
       },
-      err => console.log(err)
+      err => {
+        this.errorMsg = err.error.errorMsg;
+        console.log(err.error.errorMsg);
+      }
     )
   }
 

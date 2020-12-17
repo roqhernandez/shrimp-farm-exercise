@@ -8,7 +8,7 @@ import { FarmsService } from '../../services/farms.service';
   styleUrls: ['./farms-list.component.css']
 })
 
-/This class is where most of e funcionality resides
+//This class is where most of e funcionality resides
 export class FarmsListComponent implements OnInit {
 
   farms: any = [];

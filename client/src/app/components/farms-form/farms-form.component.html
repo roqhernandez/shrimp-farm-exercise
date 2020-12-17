@@ -1,5 +1,5 @@
 <div class="col-md-4 offset-md-4">
-
+  <span *ngIf="errorMsg" class="text-danger"> * {{errorMsg}} </span>
       <form>
         <div class="form-group">
           <label for="name">Farm Name</label><input type="text" name="name" [(ngModel)]="farm.name"  placeholder="Name" class="form-control autofocus">

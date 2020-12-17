@@ -17,20 +17,28 @@ export class PondsFormComponent implements OnInit {
   pondId : string = '';
 
   pond: Pond =  {
-    name: 'Unnamed',
+    name: '',
     size: 0
   };
+
+  errorMsg = '';
 
   editing: boolean = false;
 
   constructor(private pondsService: PondsService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
+  /**
+   * Initialization
+   */
   ngOnInit(): void {
+    //Get the params to determine if we are updating or creating
     const params = this.activatedRoute.snapshot.params;
 
+    //Within the logic of ponds, we are always going to have a farm_id
     if (params.farm_id) {
       this.farmId = params.farm_id;
 
+      //If we have a pond_id we are updating
       if (params.pond_id){
         this.pondId = params.pond_id;
         this.pondsService.getPond(params.farm_id, params.pond_id).subscribe(
@@ -47,22 +55,37 @@ export class PondsFormComponent implements OnInit {
 
   }
 
+  /**
+   * Updating an existing pond within a farm object
+   */
   public updatePond(){
 
     this.pondsService.updatePond(this.farmId, this.pondId, this.pond).subscribe(
       res => {
         this.router.navigate(['/farms']);
       },
-      err => console.log(err)
+      err => {
+        //TODO: This error handling should be done everywhere
+        //      but for now the only error we care about is duplicate names
+        this.errorMsg = err.error.errorMsg;
+        console.log(err.error.errorMsg);
+      }
     )
   }
 
+  /**
+   * Insert a new pond object inside a farm object
+   */
   public saveNewPond(){
     this.pondsService.savePond(this.farmId, this.pond).subscribe(
       res => {
         this.router.navigate(['/farms']);
       },
-      err => console.log(err)
+      err => {
+        //Expect this for duplicate names
+        this.errorMsg = err.error.errorMsg;
+        console.log(err.error.errorMsg);
+      }
     )
   }
 }
